@@ -1,10 +1,7 @@
 package com.library.repo.model;
 
-import com.library.config.exceptions.EntryNotFoundException;
-import com.library.repo.model.SQL.BookSQL;
 import com.library.repo.model.SQL.ReaderSQL;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
