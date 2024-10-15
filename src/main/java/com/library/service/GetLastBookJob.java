@@ -1,5 +1,6 @@
 package com.library.service;
 
+import com.library.config.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,6 @@ public class GetLastBookJob {
 
     @Scheduled(cron = "*/10 * * * * *") // Cron expression for running every minute
     public void execute() {
-        System.out.println("Last book: " + bookService.getLastBook().getTitle());
+        Logger.LOGGER.info("Last book: " + bookService.getLastBook().getTitle());
     }
 }
