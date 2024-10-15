@@ -10,4 +10,9 @@ public class BookSQL {
             SELECT * FROM Book
             WHERE bookId = :bookId;
             """;
+
+    public static String getLastBook = """
+            SELECT * FROM Book
+            WHERE bookId = (SELECT max(bookId) FROM Book);
+            """;
 }

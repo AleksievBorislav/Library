@@ -19,4 +19,6 @@ public class BookService {
     public Book getBookById(long id) {
         return  repo.getBookById(id);
     }
+
+    public Book getLastBook() { return repo.getLastBook(); }
 }

@@ -1,6 +1,6 @@
 services:
   app:
-    image: myapp:latest  # Replace with your Docker image
+    image: library:latest  # Replace with your Docker image
     build:
       context: .
       dockerfile: Dockerfile

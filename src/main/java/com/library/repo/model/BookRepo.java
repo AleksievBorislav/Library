@@ -13,19 +13,26 @@ import javax.sql.DataSource;
 public class BookRepo {
 
     NamedParameterJdbcTemplate template;
-    public BookRepo(@Qualifier("dataSource")DataSource source){ template = new NamedParameterJdbcTemplate(source);
+
+    public BookRepo(@Qualifier("dataSource") DataSource source) {
+        template = new NamedParameterJdbcTemplate(source);
     }
 
 
     public Book getBookByTitle(String title) {
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("title", title);
-        return template.queryForObject(BookSQL.getBookByTitle,parameters,new BookMapper());
+        return template.queryForObject(BookSQL.getBookByTitle, parameters, new BookMapper());
     }
 
     public Book getBookById(long id) {
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("bookId", id);
-        return template.queryForObject(BookSQL.getBookById,parameters,new BookMapper());
+        return template.queryForObject(BookSQL.getBookById, parameters, new BookMapper());
+    }
+
+    public Book getLastBook() {
+        SqlParameterSource parameters = new MapSqlParameterSource();
+        return template.queryForObject(BookSQL.getLastBook, parameters, new BookMapper());
     }
 }
