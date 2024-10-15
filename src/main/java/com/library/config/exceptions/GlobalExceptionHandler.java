@@ -14,19 +14,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseBody
-    public ExceptionDTO NotFoundExceptionHandler(EmptyResultDataAccessException e){
-        ExceptionDTO dto = new ExceptionDTO("Entry not found",HttpStatus.NOT_FOUND.value());
-        return dto;
+    public ExceptionDTO NotFoundExceptionHandler(EmptyResultDataAccessException e) {
+        return new ExceptionDTO("Entry not found", HttpStatus.NOT_FOUND.value());
     }
-
-//    @ExceptionHandler(value = {NotFoundException.class})
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ResponseBody
-//    public ExceptionDTO handleNotFound(Exception e) {
-//        ExceptionDTO dto = new ExceptionDTO();
-//        dto.setMsg(e.getMessage());
-//        dto.setStatus(HttpStatus.NOT_FOUND.value());
-//        e.printStackTrace();
-//        return dto;
-//    }
 }

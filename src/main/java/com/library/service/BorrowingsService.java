@@ -1,9 +1,11 @@
 package com.library.service;
 
 import com.library.repo.model.Book;
-import com.library.repo.model.BookRepo;
+import com.library.repo.model.Borrowings;
 import com.library.repo.model.BorrowingsRepo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BorrowingsService {
@@ -20,7 +22,15 @@ public class BorrowingsService {
         this.readerService = readerService;
     }
 
-    public Book getLatestBorrowedBook(String readerId) {
-        return repo.getLastBorrowedBokkByReaderId(readerId);
+    public Book getLatestBorrowedBook(Long readerId) {
+        return repo.getLastBorrowedBookByReaderId(readerId);
+    }
+
+    public void borrow(Long readerId, Long bookId) {
+        repo.borrow(readerId, bookId);
+    }
+
+    public List<Borrowings> getAllBorrowings(Long readerId) {
+        return repo.getAllBorrowings(readerId);
     }
 }

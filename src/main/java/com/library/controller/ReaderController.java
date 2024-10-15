@@ -17,7 +17,7 @@ public class ReaderController {
     }
 
     @GetMapping("/readers/{id}")
-    public List<Reader> getReaderById(@PathVariable long id){
-        return List.of(service.getReaderById(id));
+    public Reader getReaderById(@PathVariable long id){
+        return service.getReaderById(id);
     }
 }
