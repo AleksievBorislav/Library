@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS public.reader
     readerid bigint NOT NULL,
     name character varying(60) COLLATE pg_catalog."default" NOT NULL,
     age smallint,
-    bookcount integer,
+    bookcount integer DEFAULT 0,
     CONSTRAINT reader_pkey PRIMARY KEY (readerid)
 );
 

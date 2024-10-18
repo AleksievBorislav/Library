@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
 public class ReaderService {
 
     ReaderRepo repo;
-    public ReaderService(ReaderRepo repo){
+
+    public ReaderService(ReaderRepo repo) {
         this.repo = repo;
     }
 
     public Reader getReaderById(long id) {
-        return  repo.getReaderById(id);
+        return repo.getReaderById(id);
+    }
+
+    public Integer getReaderCount() {
+        return repo.getReaderCount();
     }
 }

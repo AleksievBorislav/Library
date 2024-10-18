@@ -8,17 +8,24 @@ import org.springframework.stereotype.Service;
 public class BookService {
 
     BookRepo repo;
-    public BookService(BookRepo repo){
+
+    public BookService(BookRepo repo) {
         this.repo = repo;
     }
 
-    public Book getBookByTitle(String title){
+    public Book getBookByTitle(String title) {
         return repo.getBookByTitle(title);
     }
 
     public Book getBookById(long id) {
-        return  repo.getBookById(id);
+        return repo.getBookById(id);
     }
 
-    public Book getLastBook() { return repo.getLastBook(); }
+    public Book getLastBook() {
+        return repo.getLastBook();
+    }
+
+    public Integer getBooKCount() {
+        return repo.getBookCount();
+    }
 }

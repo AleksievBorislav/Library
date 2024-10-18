@@ -1,7 +1,11 @@
 package com.library.repo.model;
 
+import com.library.config.exceptions.BorrowingNotFoundException;
+import com.library.config.exceptions.ReaderNotFoundException;
 import com.library.repo.model.SQL.BorrowingsSQL;
+import com.library.repo.model.SQL.ReaderSQL;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -22,7 +26,11 @@ public class BorrowingsRepo {
     public Book getLastBorrowedBookByReaderId(Long readerId) {
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("readerId", readerId);
-        return template.queryForObject(BorrowingsSQL.getLastBorrowedBookByReaderId,parameters,new BookMapper());
+        try {
+            return template.queryForObject(BorrowingsSQL.getLastBorrowedBookByReaderId,parameters,new BookMapper());
+        } catch (EmptyResultDataAccessException e) {
+            throw new BorrowingNotFoundException("It seems a reader with ID %s, has not borrowed any books yet.".formatted(readerId));
+        }
     }
 
     public void borrow(Long readerId, Long bookId){
@@ -35,6 +43,10 @@ public class BorrowingsRepo {
     public List<Borrowings> getAllBorrowings(Long readerId) {
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("readerId", readerId);
-        return template.queryForStream(BorrowingsSQL.getAllBorrowingsByReaderId,parameters,new BorrowingsMapper()).toList();
+        try {
+            return template.queryForStream(BorrowingsSQL.getAllBorrowingsByReaderId,parameters,new BorrowingsMapper()).toList();
+        } catch (EmptyResultDataAccessException e) {
+            throw new BorrowingNotFoundException("It seems a reader with ID %s, has not borrowed any books yet.".formatted(readerId));
+        }
     }
 }

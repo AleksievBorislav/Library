@@ -19,12 +19,12 @@ public class BookController {
 
 
     @GetMapping("/books")
-    public List<Book> getBookByTitle(@RequestParam String title){
-        return List.of(service.getBookByTitle(title));
+    public Book getBookByTitle(@RequestParam String title){
+        return service.getBookByTitle(title);
     }
 
     @GetMapping("/books/{id}")
-    public List<Book> getBookById(@PathVariable long id){
-        return List.of(service.getBookById(id));
+    public Book getBookById(@PathVariable long id){
+        return service.getBookById(id);
     }
 }

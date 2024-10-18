@@ -15,4 +15,11 @@ public class BookSQL {
             SELECT * FROM Book
             WHERE bookId = (SELECT max(bookId) FROM Book);
             """;
+
+    public static String getBookCount = """
+            SELECT COUNT(*)
+            FROM information_schema.columns
+            WHERE table_schema = 'library'
+              AND table_name = 'book';
+            """;
 }
